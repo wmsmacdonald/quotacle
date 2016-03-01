@@ -1,0 +1,33 @@
+{
+    "name": "quotacle",
+    "version": "0.0.1",
+    "private": true,
+    "description": "Generated with koa-mvc",
+    "dependencies": {
+        "co": "3.x.x",
+        "thunkify": "2.x.x",
+        "koa": "0.x.x",
+        "koa-bodyparser": "1.x.x",
+        "koa-static": "1.x.x",
+        "koa-router": "3.x.x",
+        "koa-generic-session": "1.x.x",
+        "koa-flash": "0.0.x",
+        "koa-ejs": "1.x.x",
+        "koa-error-ejs": "0.0.x",
+        "koa-passport": "0.x.x",
+        "passport-local": "1.x.x",
+        "waterline": "0.10.*",
+        "sails-disk": "0.10.*",
+        "bcrypt": "0.8.*"
+    },
+    "devDependencies": {
+        "debug": "1.x.x"
+    },
+    "engines": {
+        "node": ">= 0.11.9"
+    },
+    "scripts": {
+        "start": "node --harmony --harmony_proxies app",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    }
+}
