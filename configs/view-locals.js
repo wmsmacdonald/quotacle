@@ -4,13 +4,10 @@ module.exports={
     name: 'quotacle',
     title: 'Quotacle',
     description: '',
-        flash: function(){
+    flash: function(){
         return this.flash;
     },
-            user: function(){
+    user: function(){
         return this.request.user;
-    },
-    isAuthenticated: function(){
-        return this.isAuthenticated()
-    },
     }
+};

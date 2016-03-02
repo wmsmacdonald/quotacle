@@ -1,12 +1,12 @@
 "use strict";
 //Auth controller - holds authentication logic
-module.exports={
+module.exports = {
     login: function *(){
         yield this.render('site/login')
     },
     logout: function *(){
         
-     	this.flash.success='See you soon!'
+     	this.flash.success='See you soon!';
      	
      	this.redirect('/')
     },
@@ -18,8 +18,8 @@ module.exports={
     },
     doRegister: function *(){
         var self=this
-        var attributes= this.request.body
-        var UserModel= this.models.user
+        var attributes= this.request.body;
+        var UserModel= this.models.user;
         UserModel.create(attributes).exec(function(){
             self.body={success: true}
         });
@@ -27,4 +27,4 @@ module.exports={
     authSuccess: function(){
         this.redirect('/')
     }
-}
+};

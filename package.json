@@ -28,6 +28,6 @@
     },
     "scripts": {
         "start": "node --harmony --harmony_proxies app",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "NODE_ENV=development node --harmony --harmony_proxies app"
     }
 }
