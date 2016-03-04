@@ -18944,7 +18944,7 @@ var ReactDOM = require('react-dom');
 ReactDOM.render(React.createElement(
   'h1',
   null,
-  'Hello, world!'
+  'Hello, world! fsdfasdkl'
 ), document.getElementById('example'));
 
 },{"react":157,"react-dom":28}],159:[function(require,module,exports){
