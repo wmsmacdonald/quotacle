@@ -1,90 +1,51 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
+var ws = require('ws');
+var path = require('path');
 
-var app = require('../app');
-var debug = require('debug')('quotacle:server');
-var http = require('http');
+var WebSocketServer = ws.Server;
 
-/**
- * Get port from environment and store in Express.
- */
+var port = 3333;
+var wss = new WebSocketServer({ port: port }, function() {
+  console.log('WebSocket server listening on port %d', port);
+});
 
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+wss.on('connection', function connection(ws) {
+  ws.on('message', function incoming(message) {
+    console.log(message);
 
-/**
- * Create HTTP server.
- */
+    // ensure JSON format
+    try {
+      message = JSON.parse(message);
+    }
+    catch (e) {
+      return ws.send(JSON.stringify({ err: 'Malformed JSON' }));
+    }
 
-var server = http.createServer(app);
+    // ensure controller exists
+    try {
+      var controller = require(path.join('../controllers', message.controller + '_controller.js'));
+    }
+    catch (e) {
+      return ws.send(JSON.stringify({ err: 'Error: controller "' + message.controller + '" not found' }));
+    }
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+    // ensure controller method exists
+    if (typeof controller[message.method] !== 'function') {
+      console.log(typeof controller[message.method]);
+      return ws.send(JSON.stringify({ err: 'Error: controller "' + message.controller +
+        '" method "' + message.method + '" not found' }));
+    }
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+    controller[message.method](message.params, function(err, data) {
+      if (err) {
+        return ws.send(JSON.stringify({ err: err }));
+      }
 
-/**
- * Normalize a port into a number, string, or false.
- */
+      ws.send(JSON.stringify({ success: data }));
+    });
 
-function normalizePort(val) {
-  var port = parseInt(val, 10);
+  });
 
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
-}
-
-/**
- * Event listener for HTTP server "error" event.
- */
-
-function onError(error) {
-  if (error.syscall !== 'listen') {
-    throw error;
-  }
-
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
-
-  // handle specific listen errors with friendly messages
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-}
-
-/**
- * Event listener for HTTP server "listening" event.
- */
-
-function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
-}
+  //ws.send('service: {something'));
+});

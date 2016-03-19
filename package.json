@@ -3,20 +3,21 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "static": "node ./bin/static"
   },
   "dependencies": {
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.2.0",
-    "body-parser": "~1.13.2",
-    "cookie-parser": "~1.3.5",
-    "debug": "~2.2.0",
-    "ejs": "~2.3.3",
-    "express": "~4.13.1",
-    "morgan": "~1.6.1",
+    "mysql": "wmsmacdonald/node-mysql.git",
+    "node-static": "^0.7.7",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
-    "serve-favicon": "~2.3.0",
-    "mysql": "~2.10.2"
+    "ws": "^1.0.1"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "gulp": "^3.9.1",
+    "gulp-shell": "^0.5.2"
   }
 }
