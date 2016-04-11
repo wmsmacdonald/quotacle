@@ -7,16 +7,14 @@
     "static": "node ./bin/static"
   },
   "dependencies": {
-    "babel-preset-react": "^6.5.0",
-    "babelify": "^7.2.0",
+    "koa": "^1.2.0",
+    "koa-ejs": "^3.0.0",
     "mysql": "wmsmacdonald/node-mysql.git",
     "node-static": "^0.7.7",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
-    "ws": "^1.0.1"
+    "quotacle-asset-generator-client": "wmsmacdonald/quotacle-asset-generator-client",
+    "quotacle-cdn-client": "wmsmacdonald/quotacle-cdn-client"
   },
   "devDependencies": {
-    "browserify": "^13.0.0",
     "gulp": "^3.9.1",
     "gulp-shell": "^0.5.2"
   }

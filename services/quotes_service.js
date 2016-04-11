@@ -7,7 +7,7 @@ var QuotesService = {
 function getAll(callback) {
   var pool = require('../conf/db').pool;
   pool.getConnection(function (err, connection) {
-    if (err) callback(err);
+    if (err) return callback(err);
 
     var query = "select * from movies limit 10";
     connection.query(query, function (err, rows, fields, duration) {

@@ -1,51 +1,21 @@
 #!/usr/bin/env node
 
-var ws = require('ws');
+var koa = require('koa');
+var render = require('koa-ejs');
 var path = require('path');
 
-var WebSocketServer = ws.Server;
+var app = koa();
 
-var port = 3333;
-var wss = new WebSocketServer({ port: port }, function() {
-  console.log('WebSocket server listening on port %d', port);
+render(app, {
+  root: 'view',
+  layout: 'template',
+  viewExt: 'html',
+  cache: false,
+  debug: true
 });
 
-wss.on('connection', function connection(ws) {
-  ws.on('message', function incoming(message) {
-    console.log(message);
-
-    // ensure JSON format
-    try {
-      message = JSON.parse(message);
-    }
-    catch (e) {
-      return ws.send(JSON.stringify({ err: 'Malformed JSON' }));
-    }
-
-    // ensure controller exists
-    try {
-      var controller = require(path.join('../controllers', message.controller + '_controller.js'));
-    }
-    catch (e) {
-      return ws.send(JSON.stringify({ err: 'Error: controller "' + message.controller + '" not found' }));
-    }
-
-    // ensure controller method exists
-    if (typeof controller[message.method] !== 'function') {
-      console.log(typeof controller[message.method]);
-      return ws.send(JSON.stringify({ err: 'Error: controller "' + message.controller +
-        '" method "' + message.method + '" not found' }));
-    }
-
-    controller[message.method](message.params, function(err, data) {
-      if (err) {
-        return ws.send(JSON.stringify({ err: err }));
-      }
-
-      ws.send(JSON.stringify({ success: data }));
-    });
-
-  });
-
-  //ws.send('service: {something'));
+app.use(function *(){
+  yield this.render('test');
 });
+
+app.listen(3000);
