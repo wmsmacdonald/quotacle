@@ -1,0 +1,72 @@
+#motto-super-box {
+    text-align: center;
+    margin: 60px 0 20px 0;
+}
+body {
+    background: #e8e8e8 url(/images/backgrounds/brushed.png) repeat;
+}
+#banner-logo-wrapper {
+    background-color: #fff;
+    display: inline-block;
+    margin: 10px 0;
+}
+#main-motto-super-box {
+    text-align: center;
+    margin: 30px 0 20px 0;
+}
+#main-motto-box {
+    font-family: 'Cabin','sans-serif';
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+}
+h4 {
+    text-align: center;
+}
+#search-super-box {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+}
+#search-box {
+    float: none;
+    width: 556px;
+}
+#search-input {
+    width: 500px;
+    border-top: 2px solid #cacaca;
+    border-right: 2px solid #cacaca;
+    border-bottom: 2px solid #cacaca;
+}
+#search-button {
+    border-top: 2px solid #cacaca;
+    border-left: 2px solid #cacaca;
+    border-bottom: 2px solid #cacaca;
+}
+#autocomplete-box {
+    width: 554px;
+    border-bottom: 2px solid #cacaca;
+    border-right: 2px solid #cacaca;
+    border-left: 2px solid #cacaca;
+}
+#double-button-super-box {
+    display: block;
+    text-align: center;
+    margin: 30px 0 70px 0;
+}
+#popular-now-super-box {
+    text-align: center;
+    margin: 40px 0;
+}
+#library-button {
+    padding: 6px 25px;
+    margin: 0 40px 0 0px;
+}
+#suggest-movie-button {
+    padding: 6px 12px;
+    margin: 0 0 0 0px;
+}
+#random-quote-button {
+    padding: 6px 10px;
+    margin: 0 0px 0 40px;
+}
